@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 - 100 Days CSS Challange<</title>
+    <link rel="stylesheet" href="/Day-2/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="menu-icon" id="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <script>
+        const menu = document.getElementById('menu');
+        menu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        })
+    </script>
+</body>
+</html>

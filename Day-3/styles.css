@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.frame{
+    width: 400px;
+    height: 400px;
+    background: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(to bottom, skyblue 70%, #e2c291 70%);
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.circle{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 50%;
+    background: yellow;
+    box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.6);
+    animation: sun-path 4s linear infinite;
+}
+
+.pyramid {
+    position: absolute;
+    bottom: 30%; /* Position at the land boundary (70% from top) */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 80px;
+    background: #c19a5b;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 2;
+}
+
+.shadow {
+    position: absolute;
+    bottom: 29.9%; 
+    background: rgba(0, 0, 0, 0.4);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    z-index: 1;
+    animation: shadow-move 4s linear infinite; /* Match sun animation timing */
+    transform-origin: top; /* Make shadow rotate from the top */
+}
+
+@keyframes sun-path {
+    0% {
+        top: 70%;
+        left: 0%;
+        transform: translate(0, 0);
+    }
+    25% {
+        top: 25%;
+        left: 25%;
+    }
+    50% {
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+    75% {
+        top: 25%;
+        left: 75%;
+    }
+    100% {
+        top: 70%;
+        left: 100%;
+        transform: translate(-30px, 0);
+    }
+}
+
+@keyframes shadow-move {
+    0% {
+        left: calc(50% - 30px);
+        width: 120px;
+        height: 60px;
+        transform: skew(45deg);
+    }
+    25% {
+        left: calc(50% - 20px);
+        width: 80px;
+        height: 40px;
+        transform: skew(25deg);
+    }
+    50% {
+        left: 50%;
+        width: 60px;
+        height: 10px;
+        transform: translateX(-50%) scaleX(0.5);
+    }
+    75% {
+        left: calc(50% - 20px);
+        width: 80px;
+        height: 40px;
+        transform: skew(-25deg);
+    }
+    100% {
+        left: calc(50% - 30px);
+        width: 120px;
+        height: 60px;
+        transform: skew(-45deg);
+    }
+}
