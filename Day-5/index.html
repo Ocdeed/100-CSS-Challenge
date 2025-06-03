@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 CSS Challenge</title>
+    <link rel="stylesheet" href="/Day-5/styles.css">
+</head>
+<body>
+    <div class="frame">
+        <div class="card">
+            <div class="header">
+                <div>
+                    <h4>WEEKLY REPORT</h4>
+                    <p>01. May - 07. May</p>
+                </div>
+                <div class="revenue">
+                    <span>Revenue</span>
+                    <h3>$3620.23</h3>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="legend">
+                    <span class="dot red"></span>Views
+                    <span class="dot blue"></span>Purchases
+                </div>
+                <svg viewBox="0 0 350 100">
+                    <!-- Red Line -->
+                     <polyline points="10, 60, 60, 30, 110, 40, 160, 30, 210, 50, 260, 45, 310, 20" class="line red-line"/>
+                     <!-- Blue Line -->
+                      <polyline points="10, 70, 60, 50, 110, 60, 160, 55, 210, 65, 260, 75, 310, 60"
+                      class="line blue-line"/>
+
+                    <!-- Red Dots -->
+                     <circle class="point red-point" cx="10" cy="60" r="4" data-value="12"/>
+                     <circle class="point red-point" cx="60" cy="30" r="4" data-value="25"/>
+                     <circle class="point red-point" cx="110" cy="40" r="4" data-value="20"/>
+                     <circle class="point red-point" cx="160" cy="30" r="4" data-value="27"/>
+                     <circle class="point red-point" cx="210" cy="50" r="4" data-value="18"/>
+                     <circle class="point red-point" cx="260" cy="45" r="4" data-value="16"/>
+                     <circle class="point red-point" cx="310" cy="20" r="4" data-value="30"/>
+
+                     <!-- Blue Dots -->
+                      <circle class="point blue-point" cx="10" cy="70" r="4" data-value="8"/>
+                      <circle class="point blue-point" cx="160" cy="50" r="4" data-value="14"/>
+                      <circle class="point blue-point" cx="110" cy="60" r="4" data-value="10"/>
+                      <circle class="point blue-point" cx="160" cy="55" r="4" data-value="11"/>
+                      <circle class="point blue-point" cx="210" cy="65" r="4" data-value="9"/>
+                      <circle class="point blue-point" cx="260" cy="75" r="4" data-value="6"/>
+                      <circle class="point blue-point" cx="310" cy="60" r="4" data-value="13"/>
+                </svg>
+                <div class="tooltip" id="tooltip">13</div>
+                <div class="labels">
+                    <span>MON</span>
+                    <span>TUE</span>
+                    <span>WED</span>
+                    <span>THU</span>
+                    <span>FRI</span>
+                    <span>SAT</span>
+                    <span>SUN</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+     <script>
+        const tooltip = document.getElementById('tooltip');
+        document.querySelectorAll('point').forEach(point => {
+            point.addEventListener('click', e => {
+                const value = point.getAttribute('data-value');
+                const rect = point.getBoundingClientRect();
+                tooltip.textContent=value;
+                tooltip.style.left = `${rect.left + window.scrollX - 10}px`;
+                tooltip.style.top = `${rect.top + window.scrollY - 40}px`;
+                tooltip.style.display = 'block';
+            });
+        });
+
+        document.body.addEventListener('click', e => {
+            if(!e.target.classList.contains('point')){
+                tooltip.style.display = 'none';
+            }
+        })
+     </script>
+</body>
+</html>
